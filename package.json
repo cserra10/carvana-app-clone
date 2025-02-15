@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "test": "yarn workspaces run test",
+    "build": "yarn workspaces run build",
+    "clean": "rm -rf node_modules yarn.lock .yarn/install-state.gz && find packages -type d -name 'node_modules' -exec rm -rf {} + && yarn cache clean",
+    "payload:start": "(cd packages/payload && docker-compose up --build -d)",
+    "payload:stop": "(cd packages/payload && docker-compose down)",
+    "payload:restart": "yarn payload:stop && yarn payload:start"
+  },
+  "packageManager": "yarn@4.6.0"
+}
